@@ -66,6 +66,7 @@ nav{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;
 nav .nav-links{display:flex;align-items:center;gap:24px}
 nav .nav-links a{color:var(--mute);text-decoration:none;font-size:.95rem;letter-spacing:.14em;text-transform:uppercase;transition:color .2s}
 nav .nav-links a:hover,nav .nav-links a:focus-visible{color:var(--a);outline:none}
+.nav-toggle{display:none}
 .camera-collage{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;opacity:.24;transition:opacity .3s ease}
 .hero:hover .camera-collage,.hero:focus-within .camera-collage{opacity:.4}
 .camera-icon{position:absolute;width:112px;height:112px;stroke:rgba(0,229,255,.78);fill:none;stroke-width:2.5;filter:drop-shadow(0 0 8px rgba(0,229,255,.65)) drop-shadow(0 0 20px rgba(168,85,247,.32));transform:rotate(var(--rotate,0deg));animation:cameraFloat 7s ease-in-out infinite}
@@ -184,9 +185,9 @@ h2::before{content:"// ";color:var(--b)}
 .contact{text-align:center}
 .contact p{color:var(--mute);margin:10px auto 26px;max-width:480px}
 footer{text-align:center;padding:30px;color:var(--mute);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;border-top:1px solid var(--line)}
-@media(max-width:720px){.about{grid-template-columns:1fr}.grid{columns:2}nav .nav-links{gap:6px}.lightbox-stage{grid-template-columns:40px minmax(0,1fr) 40px;gap:8px}.lightbox-image{max-height:38dvh}}
+@media(max-width:720px){.about{grid-template-columns:1fr}.grid{columns:2}.nav-toggle{display:grid;place-items:center;width:40px;height:40px;padding:0;border:1px solid var(--line);background:rgba(0,229,255,.06);color:var(--a);cursor:pointer;box-shadow:0 0 16px rgba(0,229,255,.08);transition:background .2s,border-color .2s,box-shadow .2s}.nav-toggle:hover,.nav-toggle:focus-visible{border-color:var(--a);background:rgba(0,229,255,.12);box-shadow:0 0 18px rgba(0,229,255,.2);outline:none}.nav-toggle-icon{display:grid;gap:4px;width:17px}.nav-toggle-icon span{height:1px;background:currentColor;transition:transform .2s,width .2s}.nav-toggle-icon span:nth-child(2){width:12px;margin-left:auto}.nav-links{position:absolute;top:calc(100% + 10px);right:5vw;display:none!important;min-width:190px;flex-direction:column;align-items:stretch;gap:0!important;padding:7px;border:1px solid var(--line);background:rgba(5,6,13,.97);box-shadow:0 12px 32px rgba(0,0,0,.4),0 0 20px rgba(0,229,255,.08);backdrop-filter:blur(14px)}nav.menu-open .nav-links{display:flex!important}nav .nav-links a{display:flex;align-items:center;padding:10px 12px;font-size:.76rem;letter-spacing:.12em;border-bottom:1px solid rgba(0,229,255,.1)}nav .nav-links a:last-child{border-bottom:0}nav .nav-links a::before{margin-right:10px;color:var(--a);font: .62rem ui-monospace,Menlo,monospace;letter-spacing:.08em}nav .nav-links a:nth-child(1)::before{content:"01 /"}nav .nav-links a:nth-child(2)::before{content:"02 /"}nav .nav-links a:nth-child(3)::before{content:"03 /"}nav .nav-links a:nth-child(4)::before{content:"04 /"}nav.menu-open .nav-toggle-icon span:nth-child(1){transform:translateY(5px) rotate(45deg)}nav.menu-open .nav-toggle-icon span:nth-child(2){width:0}nav.menu-open .nav-toggle-icon span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}.lightbox-stage{grid-template-columns:40px minmax(0,1fr) 40px;gap:8px}.lightbox-image{max-height:38dvh}}
 @media(max-width:760px){.hero{min-height:auto;grid-template-columns:1fr;gap:8px;padding:11vh 7vw 7vh}.hero-art{width:min(90%,440px);margin:4px auto 0}.hero-copy{text-align:center}.tag{justify-content:center}h1{font-size:clamp(3rem,11vw,5.4rem)}.hero p{margin-inline:auto}.btns,.stats{justify-content:center}.hero-edition{left:0;bottom:2%}}
-@media(max-width:430px){.hero{padding-inline:6vw}.hero-art{width:100%}.hero-shot-main{left:12%;width:68%}.hero-shot-top{right:0;width:33%}.hero-shot-side{right:0;width:37%}.stats{gap:16px}.stats div{padding-left:8px}.stats b{font-size:1.4rem}.stats span{font-size:.58rem}nav{padding-inline:5vw}.logo{font-size:.9rem}nav .nav-links{gap:8px}nav .nav-links a{font-size:.78rem;padding:5px 0}}
+@media(max-width:430px){.hero{padding-inline:6vw}.hero-art{width:100%}.hero-shot-main{left:12%;width:68%}.hero-shot-top{right:0;width:33%}.hero-shot-side{right:0;width:37%}.stats{gap:16px}.stats div{padding-left:8px}.stats b{font-size:1.4rem}.stats span{font-size:.58rem}nav{padding-inline:5vw}.logo{font-size:.9rem}}
 @keyframes heroEnter{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 @keyframes heroGlow{from{opacity:.55;transform:scale(.92)}to{opacity:1;transform:scale(1.08)}}
 @keyframes photoHalo{from{opacity:.48;transform:scale(.88)}to{opacity:.9;transform:scale(1.08)}}
@@ -200,7 +201,7 @@ footer{text-align:center;padding:30px;color:var(--mute);font-size:.75rem;letter-
 </style>
 </head>
 <body>
-<nav aria-label="Primary navigation"><a class="logo" href="#top" aria-label="Roshan Photography"><img src="logo.png" alt="Roshan Photography logo"></a><div class="nav-links"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div></nav>
+<nav aria-label="Primary navigation"><a class="logo" href="#top" aria-label="Roshan Photography"><img src="logo.png" alt="Roshan Photography logo"></a><div class="nav-links" id="primary-menu"><a href="#top">Home</a><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div><button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-menu"><span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span></button></nav>
 <header class="hero" id="top">
 <div class="camera-collage" aria-hidden="true">
   <svg class="camera-icon" viewBox="0 0 100 100"><rect x="18" y="26" width="64" height="48" rx="12"/><rect class="flash" x="38" y="18" width="24" height="12" rx="4"/><circle class="lens" cx="50" cy="50" r="18"/><circle cx="50" cy="50" r="7"/><path d="M32 74h36"/></svg>
@@ -508,6 +509,13 @@ function applyScrollEffects(){
 window.addEventListener("scroll",applyScrollEffects,{passive:true});
 window.addEventListener("load",applyScrollEffects);
 applyScrollEffects();
+
+var primaryNav=document.querySelector("nav");
+var navToggle=primaryNav.querySelector(".nav-toggle");
+function closeMobileNav(){primaryNav.classList.remove("menu-open");navToggle.setAttribute("aria-expanded","false");navToggle.setAttribute("aria-label","Open navigation menu")}
+navToggle.addEventListener("click",function(){var isOpen=navToggle.getAttribute("aria-expanded")==="true";primaryNav.classList.toggle("menu-open",!isOpen);navToggle.setAttribute("aria-expanded",String(!isOpen));navToggle.setAttribute("aria-label",isOpen?"Open navigation menu":"Close navigation menu")});
+primaryNav.querySelectorAll(".nav-links a").forEach(function(link){link.addEventListener("click",closeMobileNav)});
+document.addEventListener("keydown",function(event){if(event.key==="Escape"&&navToggle.getAttribute("aria-expanded")==="true"){closeMobileNav();navToggle.focus()}});
 </script>
 </body>
 </html>
