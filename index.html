@@ -68,6 +68,19 @@ nav{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;
 .logo:hover img{filter:drop-shadow(0 0 12px rgba(0,229,255,.7))}
 nav div a{color:var(--mute);text-decoration:none;margin-left:20px;font-size:.85rem;text-transform:uppercase;letter-spacing:.12em}
 nav div a:hover{color:var(--a)}
+.camera-collage{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;opacity:.24;transition:opacity .3s ease}
+.hero:hover .camera-collage,.hero:focus-within .camera-collage{opacity:.4}
+.camera-icon{position:absolute;width:112px;height:112px;stroke:rgba(0,229,255,.78);fill:none;stroke-width:2.5;filter:drop-shadow(0 0 8px rgba(0,229,255,.65)) drop-shadow(0 0 20px rgba(168,85,247,.32));transform:rotate(var(--rotate,0deg));animation:cameraFloat 7s ease-in-out infinite}
+.camera-icon .lens{fill:rgba(0,229,255,.12);stroke:rgba(168,85,247,.8);stroke-width:2}
+.camera-icon .flash{fill:rgba(168,85,247,.25);stroke:rgba(168,85,247,.65)}
+.camera-icon:nth-child(1){top:8%;left:8%;--rotate:-18deg;animation-delay:0s}
+.camera-icon:nth-child(2){top:24%;right:12%;--rotate:18deg;animation-delay:1s}
+.camera-icon:nth-child(3){top:42%;left:18%;--rotate:-8deg;animation-delay:2s}
+.camera-icon:nth-child(4){top:60%;right:18%;--rotate:14deg;animation-delay:0.5s}
+.camera-icon:nth-child(5){bottom:12%;left:32%;--rotate:-12deg;animation-delay:1.5s}
+.camera-icon:nth-child(6){bottom:18%;right:32%;--rotate:20deg;animation-delay:2.3s}
+.camera-icon:nth-child(7){top:52%;right:42%;--rotate:8deg;animation-delay:3s}
+.camera-icon:nth-child(8){top:18%;left:46%;--rotate:-24deg;animation-delay:2.6s}
 .hero{min-height:calc(100svh - 64px);display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);align-items:center;gap:clamp(28px,5vw,76px);padding:8vh 7vw;position:relative;isolation:isolate;overflow:hidden}
 .hero::before{content:"";position:absolute;z-index:-1;width:56vw;height:56vw;right:-14vw;top:-18vw;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,.13),rgba(168,85,247,.08) 36%,transparent 70%);animation:heroGlow 9s ease-in-out infinite alternate}
 .hero-copy{position:relative;z-index:1;animation:heroEnter .8s both}
@@ -165,8 +178,8 @@ h2::before{content:"// ";color:var(--b)}
 .lightbox-caption{color:var(--mute);font: .7rem ui-monospace,Menlo,monospace;letter-spacing:.13em;text-align:center;text-transform:uppercase}
 .lightbox-description{max-width:min(70ch,100%);color:var(--ink);font-size:.85rem;line-height:1.55;text-align:center}
 .lightbox-footer{margin-top:16px;color:var(--mute);font: .65rem ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase}
-.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.frame{aspect-ratio:3308/3846;border:1px solid var(--a);position:relative;overflow:hidden;background:var(--panel);box-shadow:0 0 40px rgba(168,85,247,.3)}
+.about{display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:center}
+.frame{width:min(88%, 380px);aspect-ratio:3308/3846;border:1px solid var(--a);position:relative;overflow:hidden;background:var(--panel);box-shadow:0 0 40px rgba(168,85,247,.3);margin-inline:auto}
 .frame img{display:block;width:100%;height:100%;object-fit:contain}
 .frame::after{content:"ROSHAN RAJEEV";position:absolute;inset:auto 0 18px;text-align:center;letter-spacing:.5em;color:#fff;font-size:.8rem;text-shadow:0 1px 8px #000}
 .about p{color:var(--mute);margin-top:14px}
@@ -184,13 +197,23 @@ footer{text-align:center;padding:30px;color:var(--mute);font-size:.75rem;letter-
 @keyframes floatTop{0%,100%{translate:0 0;rotate:7deg}50%{translate:0 7px;rotate:9deg}}
 @keyframes floatSide{0%,100%{translate:0 0;rotate:5deg}50%{translate:0 -7px;rotate:3deg}}
 @keyframes tickerMove{to{transform:translateX(-50%)}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card,.card img,.hero-shot,.reveal-ready{transition:none}.card.filter-enter{clip-path:none;box-shadow:none;border-color:var(--line)}.reveal-ready:not(.is-visible){opacity:1;translate:none}.hero-copy,.hero-art{animation:none}.hero::before,.hero-art::before,.hero-orbit,.hero-shot,.hero-shot::before,.ticker-track{animation:none}body::after{transition:none}}
+@keyframes cameraFloat{0%,100%{transform:translateY(0) rotate(var(--rotate,0deg));opacity:.5}50%{transform:translateY(-12px) rotate(calc(var(--rotate,0deg) + 4deg));opacity:.9}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card,.card img,.hero-shot,.reveal-ready{transition:none}.card.filter-enter{clip-path:none;box-shadow:none;border-color:var(--line)}.reveal-ready:not(.is-visible){opacity:1;translate:none}.hero-copy,.hero-art{animation:none}.hero::before,.hero-art::before,.hero-orbit,.hero-shot,.hero-shot::before,.ticker-track,.camera-icon{animation:none}body::after{transition:none}}
 </style>
 </head>
 <body>
 <nav><a class="logo" href="#top" aria-label="Roshan Photography"><img src="logo.png" alt="Roshan Rajeev Photography logo"></a><div><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div></nav>
-
 <header class="hero" id="top">
+<div class="camera-collage" aria-hidden="true">
+  <svg class="camera-icon" viewBox="0 0 100 100"><rect x="18" y="26" width="64" height="48" rx="12"/><rect class="flash" x="38" y="18" width="24" height="12" rx="4"/><circle class="lens" cx="50" cy="50" r="18"/><circle cx="50" cy="50" r="7"/><path d="M32 74h36"/></svg>
+  <svg class="camera-icon" viewBox="0 0 100 100"><rect x="18" y="26" width="64" height="48" rx="12"/><rect class="flash" x="38" y="18" width="24" height="12" rx="4"/><circle class="lens" cx="50" cy="50" r="18"/><circle cx="50" cy="50" r="7"/><path d="M32 74h36"/></svg>
+  <svg class="camera-icon" viewBox="0 0 100 100"><rect x="18" y="26" width="64" height="48" rx="12"/><rect class="flash" x="38" y="18" width="24" height="12" rx="4"/><circle class="lens" cx="50" cy="50" r="18"/><circle cx="50" cy="50" r="7"/><path d="M32 74h36"/></svg>
+  <svg class="camera-icon" viewBox="0 0 100 100"><rect x="18" y="26" width="64" height="48" rx="12"/><rect class="flash" x="38" y="18" width="24" height="12" rx="4"/><circle class="lens" cx="50" cy="50" r="18"/><circle cx="50" cy="50" r="7"/><path d="M32 74h36"/></svg>
+  <svg class="camera-icon" viewBox="0 0 100 100"><rect x="18" y="26" width="64" height="48" rx="12"/><rect class="flash" x="38" y="18" width="24" height="12" rx="4"/><circle class="lens" cx="50" cy="50" r="18"/><circle cx="50" cy="50" r="7"/><path d="M32 74h36"/></svg>
+  <svg class="camera-icon" viewBox="0 0 100 100"><rect x="18" y="26" width="64" height="48" rx="12"/><rect class="flash" x="38" y="18" width="24" height="12" rx="4"/><circle class="lens" cx="50" cy="50" r="18"/><circle cx="50" cy="50" r="7"/><path d="M32 74h36"/></svg>
+  <svg class="camera-icon" viewBox="0 0 100 100"><rect x="18" y="26" width="64" height="48" rx="12"/><rect class="flash" x="38" y="18" width="24" height="12" rx="4"/><circle class="lens" cx="50" cy="50" r="18"/><circle cx="50" cy="50" r="7"/><path d="M32 74h36"/></svg>
+  <svg class="camera-icon" viewBox="0 0 100 100"><rect x="18" y="26" width="64" height="48" rx="12"/><rect class="flash" x="38" y="18" width="24" height="12" rx="4"/><circle class="lens" cx="50" cy="50" r="18"/><circle cx="50" cy="50" r="7"/><path d="M32 74h36"/></svg>
+</div>
 <div class="hero-copy">
 <div class="tag">&gt; Visual storyteller / online</div>
 <h1>Capturing<br><em>Light &amp; Moments</em></h1>
