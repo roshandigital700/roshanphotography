@@ -111,7 +111,7 @@ h2::before{content:"// ";color:var(--b)}
 .filters button{background:none;border:1px solid var(--line);color:var(--mute);padding:8px 18px;cursor:pointer;font:inherit;font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;border-radius:99px;transition:.2s}
 .filters button.on,.filters button:hover{border-color:var(--a);background:linear-gradient(110deg,rgba(0,229,255,.15),rgba(168,85,247,.16));color:var(--a);box-shadow:0 0 18px rgba(0,229,255,.2)}
 .gallery-meta{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:0 0 18px;color:var(--mute);font: .72rem ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase}
-.grid{columns:3 260px;column-gap:18px}
+.grid{columns:5 220px;column-gap:18px}
 .card{position:relative;overflow:hidden;display:block;width:100%;break-inside:avoid;margin:0 0 18px;border:1px solid var(--line);background:var(--panel);color:var(--ink);text-decoration:none;transition:transform .3s,border-color .3s,box-shadow .3s}
 .card img{display:block;width:100%;height:auto;transition:transform .5s}
 .card::after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,rgba(5,6,13,.9));pointer-events:none}
@@ -121,7 +121,19 @@ h2::before{content:"// ";color:var(--b)}
 .card small{font-family:ui-monospace,Menlo,monospace;color:var(--a);letter-spacing:.16em;font-size:.68rem;text-transform:uppercase}
 .card h3{font-size:1rem;font-weight:500}
 .card-caption span{display:inline-block;margin-top:8px;color:#b9c3d9;font: .65rem ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase}
-.card-caption .card-rating,.card-caption>span:not(.card-rating){display:block}
+.card-caption>span{display:block}
+.rating-area{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.rating-heading{margin:0;color:var(--a);font: .68rem ui-monospace,Menlo,monospace;letter-spacing:.15em;text-transform:uppercase}
+.rating-average{margin-top:6px;color:var(--ink);font-size:.9rem}
+.rating-average strong{color:var(--a)}
+.rating-stars{display:flex;gap:6px;margin-top:12px;align-items:center}
+.rating-star{border:0;background:none;color:var(--mute);font-size:clamp(1.7rem,5vw,2.4rem);line-height:1;cursor:pointer;transition:color .15s,transform .15s,text-shadow .15s}
+.rating-star:hover,.rating-star:focus-visible,.rating-star.is-active{color:var(--a);text-shadow:0 0 16px rgba(0,229,255,.55)}
+.rating-star:hover{transform:translateY(-2px)}
+.rating-stars[aria-disabled="true"] .rating-star{cursor:default}
+.rating-status{margin-top:10px;color:var(--mute);font-size:.78rem}
+.rating-status[data-state="error"]{color:#ff9a9a}
+.rating-status[data-state="success"]{color:var(--a)}
 .card.hide{display:none}
 .card.filter-enter{clip-path:inset(100% 0 0);border-color:var(--line);box-shadow:none;transition:clip-path .42s cubic-bezier(.2,.7,.2,1),border-color .32s ease,box-shadow .32s ease;transition-delay:var(--filter-delay,0ms)}
 .card.filter-enter.filter-shown{clip-path:inset(0);border-color:rgba(0,229,255,.55);box-shadow:0 0 18px rgba(0,229,255,.14)}
@@ -141,21 +153,6 @@ h2::before{content:"// ";color:var(--b)}
 .lightbox-caption{color:var(--mute);font: .7rem ui-monospace,Menlo,monospace;letter-spacing:.13em;text-align:center;text-transform:uppercase}
 .lightbox-description{max-width:min(70ch,100%);color:var(--ink);font-size:.85rem;line-height:1.55;text-align:center}
 .lightbox-footer{margin-top:16px;color:var(--mute);font: .65rem ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase}
-.rating-area{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
-.rating-heading{margin:0;color:var(--a);font: .68rem ui-monospace,Menlo,monospace;letter-spacing:.15em;text-transform:uppercase}
-.rating-heading::before{content:""}
-.rating-average{margin-top:5px;color:var(--ink);font-size:.9rem}
-.rating-average strong,.card-rating strong{color:var(--a)}
-.rating-stars{display:flex;gap:6px;margin-top:12px}
-.rating-star{border:0;background:none;color:var(--mute);font-size:clamp(1.7rem,5vw,2.4rem);line-height:1;cursor:pointer;transition:color .15s,transform .15s,text-shadow .15s}
-.rating-star:hover,.rating-star:focus-visible,.rating-star.is-active{color:var(--a);text-shadow:0 0 16px rgba(0,229,255,.55)}
-.rating-star:hover{transform:translateY(-2px)}
-.rating-stars[aria-disabled="true"] .rating-star{cursor:default}
-.rating-status{margin-top:10px;color:var(--mute);font-size:.78rem}
-.rating-status[data-state="error"]{color:#ff9a9a}
-.rating-status[data-state="success"]{color:var(--a)}
-.card-rating{margin-top:8px;color:#b9c3d9!important;font-size:.65rem!important;letter-spacing:.06em!important;text-transform:none!important}
-.card-rating strong{font-size:.72rem}
 .about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
 .frame{aspect-ratio:3308/3846;border:1px solid var(--a);position:relative;overflow:hidden;background:var(--panel);box-shadow:0 0 40px rgba(168,85,247,.3)}
 .frame img{display:block;width:100%;height:100%;object-fit:contain}
@@ -206,7 +203,7 @@ footer{text-align:center;padding:30px;color:var(--mute);font-size:.75rem;letter-
 <section id="work">
 <h2>Portfolio</h2>
 <p style="color:var(--mute)">Explore the full collection. Every frame keeps its original proportions.</p>
-<div class="filters" id="f" aria-label="Filter photos"><button class="on" type="button" data-c="all" aria-pressed="true">All photos</button><button type="button" data-c="portraits" aria-pressed="false">Portraits</button><button type="button" data-c="landscape" aria-pressed="false">Landscape</button><button type="button" data-c="city-night" aria-pressed="false">City night</button><button type="button" data-c="architecture" aria-pressed="false">Architecture</button><button type="button" data-c="animals" aria-pressed="false">Animals</button><button type="button" data-c="moto" aria-pressed="false">Moto</button><button type="button" data-c="creative" aria-pressed="false">Creative</button><button type="button" data-c="divine" aria-pressed="false">Divine</button></div>
+<div class="filters" id="f" aria-label="Filter photos"><button class="on" type="button" data-c="all" aria-pressed="true">All photos</button><button type="button" data-c="animals" aria-pressed="false">Animals</button><button type="button" data-c="architecture" aria-pressed="false">Architecture</button><button type="button" data-c="city-night" aria-pressed="false">City night</button><button type="button" data-c="creative" aria-pressed="false">Creative</button><button type="button" data-c="divine" aria-pressed="false">Divine</button><button type="button" data-c="landscape" aria-pressed="false">Landscape</button><button type="button" data-c="moto" aria-pressed="false">Moto</button><button type="button" data-c="portraits" aria-pressed="false">Portraits</button></div>
 <div class="gallery-meta"><span id="gallery-count" aria-live="polite">70 frames</span><span>Original ratios · no crops</span></div>
 <div class="grid" id="g"></div>
 </section>
@@ -216,7 +213,8 @@ footer{text-align:center;padding:30px;color:var(--mute);font-size:.75rem;letter-
 <div class="lightbox-stage"><button class="lightbox-button" type="button" data-lightbox-previous aria-label="Previous photo">←</button><figure><img class="lightbox-image" src="PORTRAITS/portraits.jpg" alt="White five-petal flower in close-up against dark green leaves."><figcaption class="lightbox-caption"></figcaption><p class="lightbox-description" aria-live="polite">White five-petal flower in close-up against dark green leaves.</p></figure><button class="lightbox-button" type="button" data-lightbox-next aria-label="Next photo">→</button></div>
 <div class="lightbox-footer"><span>Use ← → to browse · Esc to close</span><span class="lightbox-count" aria-live="polite"></span></div>
 <div class="rating-area">
-<h2 class="rating-heading" id="rating-heading">Rate this photo</h2><p class="rating-average" data-rating-average>Loading rating…</p>
+<h2 class="rating-heading" id="rating-heading">Rate this photo</h2>
+<p class="rating-average" data-rating-average>0.0 ★</p>
 <div class="rating-stars" role="group" aria-labelledby="rating-heading" aria-label="Rate this photo from one to five stars" data-rating-stars></div>
 <p class="rating-status" data-rating-status role="status" aria-live="polite"></p>
 </div>
@@ -244,7 +242,6 @@ footer{text-align:center;padding:30px;color:var(--mute);font-size:.75rem;letter-
 <footer>© 2026 Roshan Photography</footer>
 
 <script>
-var supabaseConfig={url:"",anonKey:""};
 var collections=[
 {id:"portraits",name:"Portraits",folder:"PORTRAITS",files:["portraits.jpg","portraits 2.webp","portraits 3.jpg","portraits 4.jpg","portraits 5.jpg","portraits 6.jpg","portarits 7.jpg","portraits 8.jpg","portraits 9.jpg","portraits 10.jpg"]},
 {id:"landscape",name:"Landscape",folder:"LANDSCAPE",files:["Landscape.heic","Landscape 2.heic","Landscape 3.heic","Landscape 4.heic","Landscape 5.heic","landscape 6.jpg","landcape 7.webp","landscape 7.webp","landscape 8.webp","landscape 9.webp","landscape 10.jpg","landscape 11.jpg"]},
@@ -357,7 +354,7 @@ updatePauseButton();
 startFeatureSlideshow();
 var g=document.getElementById("g");
 var total=0;
-collections.forEach(function(collection){collection.files.forEach(function(file,index){var src=encodeURI(collection.folder+"/"+file);var path=collection.folder+"/"+file;var title=collection.name+" "+String(index+1).padStart(2,"0");var card=document.createElement("a");card.className="card";card.dataset.c=collection.id;card.dataset.photoId=path;card.href=src;card.target="_blank";card.rel="noopener";card.innerHTML="<img src=\""+src+"\" alt=\"\" loading=\"lazy\" decoding=\"async\"><div class=\"card-caption\"><small>"+collection.name+" / "+String(index+1).padStart(2,"0")+"</small><h3>"+title+"</h3><span class=\"card-rating\" data-card-rating>Loading ratings…</span><span>Open full frame ↗</span></div>";card.querySelector("img").alt=photoAltDescriptions[path];g.appendChild(card);total++})});
+collections.forEach(function(collection){collection.files.forEach(function(file,index){var src=encodeURI(collection.folder+"/"+file);var path=collection.folder+"/"+file;var title=collection.name+" "+String(index+1).padStart(2,"0");var card=document.createElement("a");card.className="card";card.dataset.c=collection.id;card.dataset.photoId=path;card.href=src;card.target="_blank";card.rel="noopener";card.innerHTML="<img src=\""+src+"\" alt=\"\" loading=\"lazy\" decoding=\"async\"><div class=\"card-caption\"><small>"+collection.name+" / "+String(index+1).padStart(2,"0")+"</small><h3>"+title+"</h3><span>Open full frame ↗</span></div>";card.querySelector("img").alt=photoAltDescriptions[path];g.appendChild(card);total++})});
 document.getElementById("gallery-count").textContent=total+" frames";
 var filterAnimationFrame=null;
 var filterAnimationCleanup=null;
@@ -370,37 +367,96 @@ var lightboxCount=lightbox.querySelector(".lightbox-count");
 var lightboxItems=[];
 var lightboxIndex=0;
 var lightboxOpener=null;
-var ratingAverage=lightbox.querySelector("[data-rating-average]");
-var ratingStatus=lightbox.querySelector("[data-rating-status]");
-var ratingStars=lightbox.querySelector("[data-rating-stars]");
-var ratingSummaries=Object.create(null);
-var ratingSummariesLoaded=false;
-var activeRatingPhotoId=null;
-var voterStorageKey="roshan-photography-rating-id";
-var ratingButtons=[];
-for(var starValue=1;starValue<=5;starValue++){var starButton=document.createElement("button");starButton.className="rating-star";starButton.type="button";starButton.dataset.rating=String(starValue);starButton.textContent="★";starButton.setAttribute("aria-label","Rate "+starValue+" out of 5 stars");ratingStars.appendChild(starButton);ratingButtons.push(starButton)}
-function supabaseConfigured(){return /^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/.test(supabaseConfig.url)&&supabaseConfig.anonKey.length>0}
-function supabaseRequest(path,options){var headers=new Headers(options&&options.headers?options.headers:{});headers.set("apikey",supabaseConfig.anonKey);headers.set("Authorization","Bearer "+supabaseConfig.anonKey);headers.set("Accept","application/json");if(options&&options.body)headers.set("Content-Type","application/json");return fetch(supabaseConfig.url.replace(/\/$/,"")+"/rest/v1/"+path,Object.assign({},options||{},{headers:headers})).then(function(response){if(!response.ok)return response.text().then(function(text){var message=text;var code="";try{var data=JSON.parse(text);message=data.message||data.details||text;code=data.code||""}catch(error){}var requestError=new Error(message||"Supabase request failed ("+response.status+").");requestError.code=code;throw requestError});if(response.status===204)return[];return response.text().then(function(text){return text?JSON.parse(text):[]})})}
-function getVoterId(){var id=localStorage.getItem(voterStorageKey);if(!id){id=crypto.randomUUID();localStorage.setItem(voterStorageKey,id)}return id}
-function formatRatingSummary(summary){if(!summary)return"0.0 ★ · 0 ratings";var count=Number(summary.rating_count);var average=Number(summary.average_rating);if(!Number.isSafeInteger(count)||count<1||!Number.isFinite(average)||average<1||average>5)return"0.0 ★ · 0 ratings";return"<strong>"+average.toFixed(1)+" ★</strong> · "+count+" "+(count===1?"rating":"ratings")}
-function updateCardRatings(){g.querySelectorAll(".card").forEach(function(card){card.querySelector("[data-card-rating]").innerHTML=formatRatingSummary(ratingSummaries[card.dataset.photoId])})}
-function setRatingStatus(message,state){ratingStatus.textContent=message;ratingStatus.dataset.state=state||""}
-function setRatingSelection(value,disabled){ratingButtons.forEach(function(button){var selected=Number(button.dataset.rating)<=value;button.classList.toggle("is-active",selected);button.disabled=!!disabled;button.setAttribute("aria-pressed",String(Number(button.dataset.rating)===value))});ratingStars.setAttribute("aria-disabled",String(!!disabled))}
-function loadRatingSummaries(force){if(!supabaseConfigured()){updateCardRatings();return Promise.resolve(false)}if(ratingSummariesLoaded&&!force)return Promise.resolve(true);return supabaseRequest("photo_rating_summary?select=photo_id,rating_count,average_rating").then(function(rows){ratingSummaries=Object.create(null);rows.forEach(function(row){ratingSummaries[row.photo_id]=row});ratingSummariesLoaded=true;updateCardRatings();return true}).catch(function(error){ratingSummariesLoaded=false;console.error("Could not load photo ratings:",error);g.querySelectorAll("[data-card-rating]").forEach(function(item){item.textContent="Ratings unavailable"});return false})}
-function loadPhotoRating(item,forceSummaryRefresh){activeRatingPhotoId=item.photoId;ratingAverage.textContent=supabaseConfigured()?"Loading rating…":"Public ratings need Supabase setup.";setRatingSelection(0,true);if(!supabaseConfigured()){setRatingStatus("Connect Supabase to enable public star ratings.","error");return Promise.resolve()}var voterId;try{voterId=getVoterId()}catch(error){console.error("Could not access browser storage for the one-rating-per-photo limit:",error);setRatingStatus("Browser storage is unavailable, so a rating cannot be saved.","error");return Promise.resolve()}setRatingStatus("Choose a star rating. One rating per photo on this browser.","");var query="photo_id=eq."+encodeURIComponent(item.photoId)+"&voter_id=eq."+encodeURIComponent(voterId)+"&select=rating&limit=1";return Promise.all([supabaseRequest("photo_ratings?"+query),loadRatingSummaries(forceSummaryRefresh)]).then(function(results){if(activeRatingPhotoId!==item.photoId)return;var ownRating=results[0][0]?Number(results[0][0].rating):0;ratingAverage.innerHTML=results[1]?formatRatingSummary(ratingSummaries[item.photoId]):"Rating summary unavailable.";setRatingSelection(ownRating,ownRating>0);setRatingStatus(ownRating?"Your rating: "+ownRating+" out of 5 stars.":"Choose a star rating. One rating per photo on this browser.",ownRating?"success":"")}).catch(function(error){if(activeRatingPhotoId!==item.photoId)return;console.error("Could not load this photo's rating:",error);ratingAverage.textContent="Rating could not be loaded.";setRatingStatus("Could not load ratings: "+error.message,"error")})}
-function renderLightboxPhoto(){var item=lightboxItems[lightboxIndex];if(!item)return;lightboxImage.src=item.src;lightboxImage.alt=item.alt;lightboxCaption.textContent=item.category+" / "+item.title;lightboxDescription.textContent=item.alt;lightboxCount.textContent=String(lightboxIndex+1).padStart(2,"0")+" / "+String(lightboxItems.length).padStart(2,"0");loadPhotoRating(item)}
 function openLightbox(card){lightboxItems=Array.prototype.map.call(g.querySelectorAll(".card:not(.hide)"),function(item){return{src:item.querySelector("img").currentSrc||item.querySelector("img").src,alt:item.querySelector("img").alt,title:item.querySelector("h3").textContent,category:item.querySelector("small").textContent,photoId:item.dataset.photoId}});lightboxIndex=Array.prototype.indexOf.call(g.querySelectorAll(".card:not(.hide)"),card);if(lightboxIndex<0||!lightboxItems.length)return;lightboxOpener=card;renderLightboxPhoto();lightbox.showModal()}
 function stepLightbox(direction){if(!lightboxItems.length)return;lightboxIndex=(lightboxIndex+direction+lightboxItems.length)%lightboxItems.length;renderLightboxPhoto()}
-ratingButtons.forEach(function(button){button.addEventListener("mouseenter",function(){if(!button.disabled)setRatingSelection(Number(button.dataset.rating),false)});button.addEventListener("focus",function(){if(!button.disabled)setRatingSelection(Number(button.dataset.rating),false)});button.addEventListener("click",function(){var item=lightboxItems[lightboxIndex];if(!item||!supabaseConfigured()||button.disabled)return;var rating=Number(button.dataset.rating);var voterId;try{voterId=getVoterId()}catch(error){console.error("Could not access browser storage to save this rating:",error);setRatingStatus("Browser storage is unavailable, so a rating cannot be saved.","error");return}setRatingSelection(rating,true);setRatingStatus("Saving your rating…","");supabaseRequest("photo_ratings",{method:"POST",headers:{"Prefer":"return=minimal"},body:JSON.stringify({photo_id:item.photoId,voter_id:voterId,rating:rating})}).then(function(){if(activeRatingPhotoId===item.photoId)return loadPhotoRating(item,true)}).catch(function(error){if(activeRatingPhotoId!==item.photoId)return;console.error("Could not save photo rating:",error);setRatingSelection(0,false);setRatingStatus(error.code==="23505"?"This browser has already rated this photo.":"Your rating could not be saved: "+error.message,"error")})})});
-ratingStars.addEventListener("mouseleave",function(){if(activeRatingPhotoId){var match=ratingStatus.textContent.match(/Your rating: (\d+)/);var selected=match?Number(match[1]):0;setRatingSelection(selected,selected>0)}});
 g.addEventListener("click",function(event){var card=event.target.closest(".card");if(!card||card.classList.contains("hide"))return;event.preventDefault();openLightbox(card)});
 lightbox.querySelector("[data-lightbox-close]").addEventListener("click",function(){lightbox.close()});
 lightbox.querySelector("[data-lightbox-previous]").addEventListener("click",function(){stepLightbox(-1)});
 lightbox.querySelector("[data-lightbox-next]").addEventListener("click",function(){stepLightbox(1)});
 lightbox.addEventListener("click",function(event){if(event.target===lightbox)lightbox.close()});
 lightbox.addEventListener("close",function(){if(lightboxOpener&&lightboxOpener.isConnected)lightboxOpener.focus();lightboxOpener=null});
-document.addEventListener("keydown",function(event){if(!lightbox.open)return;if(event.key==="Escape"){event.preventDefault();lightbox.close()}else if(event.target.closest("[data-rating-stars]"))return;else if(event.key==="ArrowRight"){event.preventDefault();stepLightbox(1)}else if(event.key==="ArrowLeft"){event.preventDefault();stepLightbox(-1)}});
-loadRatingSummaries();
+document.addEventListener("keydown",function(event){if(!lightbox.open)return;if(event.key==="Escape"){event.preventDefault();lightbox.close()}else if(event.key==="ArrowRight"){event.preventDefault();stepLightbox(1)}else if(event.key==="ArrowLeft"){event.preventDefault();stepLightbox(-1)}});
+var ratingStars=document.querySelector("[data-rating-stars]");
+var ratingAverage=document.querySelector("[data-rating-average]");
+var ratingStatus=document.querySelector("[data-rating-status]");
+var ratingStorageKey="roshanPhotographyRatings";
+
+if(ratingStars){
+  for(var starValue=1;starValue<=5;starValue++){
+    var starButton=document.createElement("button");
+    starButton.type="button";
+    starButton.className="rating-star";
+    starButton.setAttribute("data-value",String(starValue));
+    starButton.setAttribute("aria-label","Rate this photo "+starValue+" star"+(starValue===1?"":"s"));
+    starButton.setAttribute("aria-pressed","false");
+    starButton.textContent="★";
+    starButton.addEventListener("click",function(event){
+      var chosenValue=Number(event.currentTarget.getAttribute("data-value"));
+      var currentPhotoId=lightboxItems[lightboxIndex]&&lightboxItems[lightboxIndex].photoId?lightboxItems[lightboxIndex].photoId:"";
+      if(!currentPhotoId){
+        ratingStatus.textContent="Select a photo before rating it.";
+        ratingStatus.dataset.state="error";
+        return;
+      }
+      try{
+        var savedRatings=JSON.parse(localStorage.getItem(ratingStorageKey)||"{}")||{};
+        savedRatings[currentPhotoId]=chosenValue;
+        localStorage.setItem(ratingStorageKey,JSON.stringify(savedRatings));
+        ratingStatus.textContent="Thanks for rating this photo.";
+        ratingStatus.dataset.state="success";
+        if(ratingAverage){ratingAverage.textContent=chosenValue.toFixed(1)+" ★";}
+        Array.prototype.forEach.call(ratingStars.querySelectorAll(".rating-star"),function(star){
+          var starValueNumber=Number(star.getAttribute("data-value"));
+          var active=starValueNumber<=chosenValue;
+          star.classList.toggle("is-active",active);
+          star.setAttribute("aria-pressed",active?"true":"false");
+        });
+      }catch(error){
+        console.error("Unable to save photo rating:",error);
+        ratingStatus.textContent="Rating could not be saved.";
+        ratingStatus.dataset.state="error";
+      }
+    });
+    ratingStars.appendChild(starButton);
+  }
+}
+
+function syncRatingUI(){
+  var currentPhotoId=lightboxItems[lightboxIndex]&&lightboxItems[lightboxIndex].photoId?lightboxItems[lightboxIndex].photoId:"";
+  if(!currentPhotoId||!ratingStars){
+    if(ratingAverage){ratingAverage.textContent="0.0 ★";}
+    if(ratingStatus){ratingStatus.textContent="";ratingStatus.dataset.state="";}
+    return;
+  }
+  try{
+    var savedRatings=JSON.parse(localStorage.getItem(ratingStorageKey)||"{}")||{};
+    var savedRating=Number(savedRatings[currentPhotoId])||0;
+    Array.prototype.forEach.call(ratingStars.querySelectorAll(".rating-star"),function(star){
+      var starValue=Number(star.getAttribute("data-value"));
+      var active=starValue<=savedRating;
+      star.classList.toggle("is-active",active);
+      star.setAttribute("aria-pressed",active?"true":"false");
+    });
+    if(ratingAverage){ratingAverage.textContent=savedRating.toFixed(1)+" ★";}
+    if(ratingStatus){ratingStatus.textContent=savedRating?"Your saved rating is visible here." : ""; ratingStatus.dataset.state=savedRating?"success":"";}
+  }catch(error){
+    console.error("Unable to load saved photo ratings:",error);
+    if(ratingAverage){ratingAverage.textContent="0.0 ★";}
+    if(ratingStatus){ratingStatus.textContent="Unable to load saved ratings."; ratingStatus.dataset.state="error";}
+  }
+}
+
+function renderLightboxPhoto(){
+  var item=lightboxItems[lightboxIndex];
+  if(!item)return;
+  lightboxImage.src=item.src;
+  lightboxImage.alt=item.alt;
+  lightboxCaption.textContent=item.category+" / "+item.title;
+  lightboxDescription.textContent=item.alt;
+  lightboxCount.textContent=String(lightboxIndex+1).padStart(2,"0")+" / "+String(lightboxItems.length).padStart(2,"0");
+  syncRatingUI();
+}
+
 var revealSelector="#work > h2, #work > p, #f, .gallery-meta, .card, #about .frame, #about .about > div:last-child, #contact > *";
 var revealElements=Array.prototype.slice.call(document.querySelectorAll(revealSelector));
 if("IntersectionObserver"in window&&!reducedMotion.matches){var revealObserver=new IntersectionObserver(function(entries,observer){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add("is-visible");observer.unobserve(entry.target)}})},{threshold:.08,rootMargin:"0px 0px -24px 0px"});revealElements.forEach(function(element,index){element.classList.add("reveal-ready");element.style.setProperty("--reveal-delay",Math.min(index%10,8)*35+"ms");revealObserver.observe(element)})}else{revealElements.forEach(function(element){element.classList.add("is-visible")})}
