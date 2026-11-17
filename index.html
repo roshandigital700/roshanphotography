@@ -61,11 +61,11 @@ body{background:var(--bg);color:var(--ink);font-family:"Space Grotesk","Segoe UI
 body::before{content:"";position:fixed;inset:0;background:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;opacity:.18;pointer-events:none;mask-image:radial-gradient(circle at 50% 30%,#000,transparent 75%)}
 body>:not(nav){position:relative;z-index:1}
 nav{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.logo{display:flex;align-items:center;text-decoration:none}
-.logo img{display:block;height:42px;width:auto;max-width:42vw;filter:drop-shadow(0 0 8px rgba(0,229,255,.35));transition:filter .2s}
-.logo:hover img{filter:drop-shadow(0 0 12px rgba(0,229,255,.7))}
-nav div a{color:var(--mute);text-decoration:none;margin-left:20px;font-size:.85rem;text-transform:uppercase;letter-spacing:.12em}
-nav div a:hover{color:var(--a)}
+.logo{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;white-space:nowrap}
+.logo img{display:block;width:clamp(120px,18vw,180px);height:auto;filter:drop-shadow(0 0 20px rgba(0,229,255,.18))}
+nav .nav-links{display:flex;align-items:center;gap:24px}
+nav .nav-links a{color:var(--ink);text-decoration:none;font-size:.95rem;letter-spacing:normal;text-transform:none;transition:color .2s}
+nav .nav-links a:hover,nav .nav-links a:focus-visible{color:var(--a);outline:none}
 .camera-collage{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;opacity:.24;transition:opacity .3s ease}
 .hero:hover .camera-collage,.hero:focus-within .camera-collage{opacity:.4}
 .camera-icon{position:absolute;width:112px;height:112px;stroke:rgba(0,229,255,.78);fill:none;stroke-width:2.5;filter:drop-shadow(0 0 8px rgba(0,229,255,.65)) drop-shadow(0 0 20px rgba(168,85,247,.32));transform:rotate(var(--rotate,0deg));animation:cameraFloat 7s ease-in-out infinite}
@@ -184,9 +184,9 @@ h2::before{content:"// ";color:var(--b)}
 .contact{text-align:center}
 .contact p{color:var(--mute);margin:10px auto 26px;max-width:480px}
 footer{text-align:center;padding:30px;color:var(--mute);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;border-top:1px solid var(--line)}
-@media(max-width:720px){.about{grid-template-columns:1fr}.grid{columns:2}nav div a{margin-left:12px}.lightbox-stage{grid-template-columns:40px minmax(0,1fr) 40px;gap:8px}.lightbox-image{max-height:38dvh}}
+@media(max-width:720px){.about{grid-template-columns:1fr}.grid{columns:2}nav .nav-links{gap:6px}.lightbox-stage{grid-template-columns:40px minmax(0,1fr) 40px;gap:8px}.lightbox-image{max-height:38dvh}}
 @media(max-width:760px){.hero{min-height:auto;grid-template-columns:1fr;gap:8px;padding:11vh 7vw 7vh}.hero-art{width:min(90%,440px);margin:4px auto 0}.hero-copy{text-align:center}.tag{justify-content:center}h1{font-size:clamp(3rem,11vw,5.4rem)}.hero p{margin-inline:auto}.btns,.stats{justify-content:center}.hero-edition{left:0;bottom:2%}}
-@media(max-width:430px){.hero{padding-inline:6vw}.hero-art{width:100%}.hero-shot-main{left:12%;width:68%}.hero-shot-top{right:0;width:33%}.hero-shot-side{right:0;width:37%}.stats{gap:16px}.stats div{padding-left:8px}.stats b{font-size:1.4rem}.stats span{font-size:.58rem}nav{padding-inline:5vw}nav div a{margin-left:9px;font-size:.72rem}}
+@media(max-width:430px){.hero{padding-inline:6vw}.hero-art{width:100%}.hero-shot-main{left:12%;width:68%}.hero-shot-top{right:0;width:33%}.hero-shot-side{right:0;width:37%}.stats{gap:16px}.stats div{padding-left:8px}.stats b{font-size:1.4rem}.stats span{font-size:.58rem}nav{padding-inline:5vw}.logo{font-size:.9rem}nav .nav-links{gap:8px}nav .nav-links a{font-size:.78rem;padding:5px 0}}
 @keyframes heroEnter{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 @keyframes heroGlow{from{opacity:.55;transform:scale(.92)}to{opacity:1;transform:scale(1.08)}}
 @keyframes photoHalo{from{opacity:.48;transform:scale(.88)}to{opacity:.9;transform:scale(1.08)}}
@@ -200,7 +200,7 @@ footer{text-align:center;padding:30px;color:var(--mute);font-size:.75rem;letter-
 </style>
 </head>
 <body>
-<nav><a class="logo" href="#top" aria-label="Roshan Photography"><img src="logo.png" alt="Roshan Rajeev Photography logo"></a><div><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div></nav>
+<nav aria-label="Primary navigation"><a class="logo" href="#top" aria-label="Roshan Photography"><img src="logo.png" alt="Roshan Photography logo"></a><div class="nav-links"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div></nav>
 <header class="hero" id="top">
 <div class="camera-collage" aria-hidden="true">
   <svg class="camera-icon" viewBox="0 0 100 100"><rect x="18" y="26" width="64" height="48" rx="12"/><rect class="flash" x="38" y="18" width="24" height="12" rx="4"/><circle class="lens" cx="50" cy="50" r="18"/><circle cx="50" cy="50" r="7"/><path d="M32 74h36"/></svg>
