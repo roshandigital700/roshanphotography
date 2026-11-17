@@ -59,7 +59,11 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:"Space Grotesk","Segoe UI",system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0;background:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;opacity:.18;pointer-events:none;mask-image:radial-gradient(circle at 50% 30%,#000,transparent 75%)}
-body>:not(nav){position:relative;z-index:1}
+body>:not(nav):not(.back-to-top){position:relative;z-index:1}
+.back-to-top{position:fixed;right:22px;bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:20;display:grid;place-items:center;width:46px;height:46px;border:1px solid var(--a);border-radius:50%;background:rgba(5,6,13,.9);color:var(--a);box-shadow:0 0 18px rgba(0,229,255,.2);opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .2s,transform .2s,background .2s,color .2s,visibility .2s}
+.back-to-top.is-visible{opacity:1;visibility:visible;transform:translateY(0)}
+.back-to-top:hover,.back-to-top:focus-visible{background:var(--a);color:var(--bg);box-shadow:0 0 24px rgba(0,229,255,.45);outline:none}
+.back-to-top svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 nav{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .logo{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;white-space:nowrap}
 .logo img{display:block;width:clamp(120px,18vw,180px);height:auto;filter:drop-shadow(0 0 20px rgba(0,229,255,.18))}
@@ -274,6 +278,7 @@ footer{text-align:center;padding:30px;color:var(--mute);font-size:.75rem;letter-
 </section>
 
 <footer>© 2026 Roshan Photography</footer>
+<a class="back-to-top" href="#top" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
 
 <script>
 var collections=[
@@ -487,6 +492,7 @@ if("IntersectionObserver"in window&&!reducedMotion.matches){var revealObserver=n
 
 function applyScrollEffects(){
   var scrollValue=window.scrollY || window.pageYOffset || 0;
+  document.querySelector(".back-to-top").classList.toggle("is-visible",scrollValue>400);
   Array.prototype.forEach.call(document.querySelectorAll(".card"),function(card){
     var rect=card.getBoundingClientRect();
     var viewportCenter=window.innerHeight * 0.6;
