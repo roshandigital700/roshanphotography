@@ -111,15 +111,15 @@ h2::before{content:"// ";color:var(--b)}
 .filters button{background:none;border:1px solid var(--line);color:var(--mute);padding:8px 18px;cursor:pointer;font:inherit;font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;border-radius:99px;transition:.2s}
 .filters button.on,.filters button:hover{border-color:var(--a);background:linear-gradient(110deg,rgba(0,229,255,.15),rgba(168,85,247,.16));color:var(--a);box-shadow:0 0 18px rgba(0,229,255,.2)}
 .gallery-meta{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:0 0 18px;color:var(--mute);font: .72rem ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase}
-.grid{columns:5 180px;column-gap:14px}
-.card{margin:0 0 14px}
-.card-caption{padding:12px 12px 14px}
-.card h3{font-size:.92rem}
-.card small{letter-spacing:.12em}
-@media(max-width:1200px){.grid{columns:4 170px}}
-@media(max-width:900px){.grid{columns:3 160px}}
-@media(max-width:640px){.grid{columns:2 150px;column-gap:12px}}
-@media(max-width:420px){.grid{columns:1;column-gap:0}}
+.grid{columns:4 250px;column-gap:24px}
+.card{margin:0 0 22px}
+.card-caption{padding:14px 14px 16px}
+.card h3{font-size:1rem}
+.card small{letter-spacing:.14em}
+@media(max-width:1200px){.grid{columns:3 240px;column-gap:20px}}
+@media(max-width:900px){.grid{columns:2 220px;column-gap:18px}}
+@media(max-width:560px){.grid{columns:1;column-gap:0}}
+
 .card{position:relative;overflow:hidden;display:block;width:100%;break-inside:avoid;margin:0 0 18px;border:1px solid var(--line);background:var(--panel);color:var(--ink);text-decoration:none;transition:transform .3s,border-color .3s,box-shadow .3s}
 .card img{display:block;width:100%;height:auto;transition:transform .5s}
 .card::after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,rgba(5,6,13,.9));pointer-events:none}
