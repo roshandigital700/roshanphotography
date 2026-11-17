@@ -59,8 +59,6 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:"Space Grotesk","Segoe UI",system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0;background:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;opacity:.18;pointer-events:none;mask-image:radial-gradient(circle at 50% 30%,#000,transparent 75%)}
-body::after{content:"";position:fixed;z-index:0;inset:0;background:radial-gradient(340px circle at var(--pointer-x,50vw) var(--pointer-y,50vh),rgba(1,202,226,.2),rgba(168,85,247,.1) 42%,transparent 74%);opacity:0;pointer-events:none;transition:opacity .25s}
-body.pointer-active::after{opacity:1}
 body>:not(nav){position:relative;z-index:1}
 nav{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .logo{display:flex;align-items:center;text-decoration:none}
@@ -198,7 +196,7 @@ footer{text-align:center;padding:30px;color:var(--mute);font-size:.75rem;letter-
 @keyframes floatSide{0%,100%{translate:0 0;rotate:5deg}50%{translate:0 -7px;rotate:3deg}}
 @keyframes tickerMove{to{transform:translateX(-50%)}}
 @keyframes cameraFloat{0%,100%{transform:translateY(0) rotate(var(--rotate,0deg));opacity:.5}50%{transform:translateY(-12px) rotate(calc(var(--rotate,0deg) + 4deg));opacity:.9}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card,.card img,.hero-shot,.reveal-ready{transition:none}.card.filter-enter{clip-path:none;box-shadow:none;border-color:var(--line)}.reveal-ready:not(.is-visible){opacity:1;translate:none}.hero-copy,.hero-art{animation:none}.hero::before,.hero-art::before,.hero-orbit,.hero-shot,.hero-shot::before,.ticker-track,.camera-icon{animation:none}body::after{transition:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card,.card img,.hero-shot,.reveal-ready{transition:none}.card.filter-enter{clip-path:none;box-shadow:none;border-color:var(--line)}.reveal-ready:not(.is-visible){opacity:1;translate:none}.hero-copy,.hero-art{animation:none}.hero::before,.hero-art::before,.hero-orbit,.hero-shot,.hero-shot::before,.ticker-track,.camera-icon{animation:none}}
 </style>
 </head>
 <body>
@@ -364,19 +362,9 @@ for(var photoIndex=0,hasPhotos=true;hasPhotos;photoIndex++){hasPhotos=false;coll
 var featureSlots=Array.prototype.map.call(document.querySelectorAll(".hero-shot"),function(link){var img=link.querySelector("img");var slot={link:link,img:img,label:link.querySelector(".hero-shot-label"),index:featuredPhotos.findIndex(function(photo){return photo.src===img.getAttribute("src")}),isLandscape:link.classList.contains("hero-shot-main")};function matchFrameRatio(){if(img.naturalWidth&&img.naturalHeight)link.style.aspectRatio=img.naturalWidth+" / "+img.naturalHeight}img.addEventListener("load",matchFrameRatio);matchFrameRatio();return slot}).filter(function(slot){return slot.index!==-1});
 var pauseButton=document.querySelector(".hero-pause");
 var motionPreference=window.matchMedia("(prefers-reduced-motion: reduce)");
+var reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)");
 var featurePaused=motionPreference.matches;
 var featureTimer=null;
-var pageRoot=document.body;
-var finePointer=window.matchMedia("(hover: hover) and (pointer: fine)");
-var reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)");
-var pointerFrame=null;
-function trackPagePointer(event){if(pointerFrame!==null)return;pointerFrame=window.requestAnimationFrame(function(){var xRatio=window.innerWidth<=0?0.5:event.clientX/window.innerWidth;var yRatio=window.innerHeight<=0?0.5:event.clientY/window.innerHeight;document.documentElement.style.setProperty("--pointer-x",event.clientX+"px");document.documentElement.style.setProperty("--pointer-y",event.clientY+"px");document.documentElement.style.setProperty("--look-x",(xRatio-0.5)*2.6+"");document.documentElement.style.setProperty("--look-y",(yRatio-0.5)*2.2+"");pageRoot.classList.add("pointer-active");pointerFrame=null})}
-function clearPagePointer(){if(pointerFrame!==null){window.cancelAnimationFrame(pointerFrame);pointerFrame=null}pageRoot.classList.remove("pointer-active")}
-function handlePagePointerLeave(event){if(!event.relatedTarget)clearPagePointer()}
-function updatePagePointerTracking(){document.removeEventListener("pointermove",trackPagePointer);document.removeEventListener("pointerout",handlePagePointerLeave);window.removeEventListener("blur",clearPagePointer);clearPagePointer();if(finePointer.matches&&!reducedMotion.matches){document.addEventListener("pointermove",trackPagePointer);document.addEventListener("pointerout",handlePagePointerLeave);window.addEventListener("blur",clearPagePointer)}}
-finePointer.addEventListener("change",updatePagePointerTracking);
-reducedMotion.addEventListener("change",updatePagePointerTracking);
-updatePagePointerTracking();
 function updatePauseButton(){pauseButton.setAttribute("aria-pressed",String(featurePaused));pauseButton.textContent=featurePaused?"▶ Play":"Ⅱ Pause"}
 function stopFeatureSlideshow(){if(featureTimer!==null){window.clearInterval(featureTimer);featureTimer=null}}
 function startFeatureSlideshow(){if(featurePaused||document.hidden||featureTimer!==null)return;featureTimer=window.setInterval(advanceFeaturedPhotos,5000)}
