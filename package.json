@@ -1,0 +1,19 @@
+{
+  "name": "roshanphotography",
+  "version": "1.0.0",
+  "description": "Roshan Photography Portfolio - Mobile Photography in Ajman, UAE",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build needed'",
+    "lint": "echo 'No linter configured for static HTML'"
+  },
+  "keywords": [
+    "photography",
+    "portfolio"
+  ],
+  "author": "Roshan Rajeev",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
